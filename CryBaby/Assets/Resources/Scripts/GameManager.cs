@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public int happiness;
     public int hunger;
     public int energy;
+    public int potty;
     private int lastSecond;
     private bool bottle = false;
     private bool nap = false;
@@ -29,16 +30,16 @@ public class GameManager : MonoBehaviour
     //private int lastInteraction;
     public int[] interactionCharges;
     public int[] interactionCoolDowns;
+    private Vector3 lastMousePos;
+    public float mouseSpeed;
+
     // 0 = Bottle In
     // 1 = Bottle Out
     // 2 = Burp
     // 3 = Nap
     // 4 = Change diaper
-    // 5 = Rock
+    // 5 = Start rocking
     // 6 = Stop rocking
-    private Vector3 lastMousePos;
-    public float mouseSpeed;
-
     // 7 = Bang pot
     // 8 = Clown toy
     // 9 = Hand puppet
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
     // 11 = Silly face
     // 12 = Cat
     // 13 = Matches
+    // 14 = Cup
 
     // UI
     public TextMeshProUGUI timerDisplay;
@@ -75,6 +77,10 @@ public class GameManager : MonoBehaviour
         {
             happiness = 0;
         }
+        if (happiness > 100)
+        {
+            happiness = 100;
+        }
         if (hunger < 0)
         {
             hunger = 0;
@@ -82,6 +88,10 @@ public class GameManager : MonoBehaviour
         if (energy < 0)
         {
             energy = 0;
+        }
+        if (potty < 0)
+        {
+            potty = 0;
         }
 
         // Mouse speed
@@ -123,10 +133,11 @@ public class GameManager : MonoBehaviour
         timerDisplay.text = time[0].ToString() + ":" + time[1].ToString("D2");
 
         // Baby stats
-        if (float.Parse((secondsRaw - 0.01f).ToString("F2")) % 30 == 0)
+        if (float.Parse((secondsRaw - 0.01f).ToString("F2")) % 10 == 0)
         {
             hunger--;
             energy--;
+            potty--;
         }
 
         // Check only every 1 whole second
@@ -155,7 +166,7 @@ public class GameManager : MonoBehaviour
             }
 
             // Happiness decreases with hunger or energy are at 0
-            if (hunger == 0 || energy == 0 || hunger > 10)
+            if (hunger == 0 || energy == 0 || hunger > 10 || potty == 0)
             {
                 happiness--;
             }
@@ -204,13 +215,38 @@ public class GameManager : MonoBehaviour
         happiness = 30;
         hunger = Random.Range(0, 11);
         energy = Random.Range(0, 11);
+        potty = 10;
         bottle = false;
         nap = false;
         burped = false;
         rocking = false;
+        int positiveCharges = 0;
+        int negativeCharges = 0;
         for (int i = 7; i < interactionCharges.Length; i++)
         {
-            interactionCharges[i] = Random.Range(-2, 3);
+            int chargeBias = 0;
+            if (positiveCharges == (interactionCharges.Length - 7) / 2)
+            {
+                chargeBias = -1;
+            }
+            else if (negativeCharges == (interactionCharges.Length - 7) / 2)
+            {
+                chargeBias = 1;
+            }
+
+            if (chargeBias == 0)
+            {
+                if (Random.Range(0, 2) == 0)
+                {
+                    chargeBias = 1;
+                }
+                else
+                {
+                    chargeBias = -1;
+                }
+            }
+
+            interactionCharges[i] = Random.Range(1, 3) * chargeBias * 10;
         }
 
         // Set up clock
@@ -238,7 +274,7 @@ public class GameManager : MonoBehaviour
             hunger -= (hunger - 10);
         }
 
-        totalScore = (happiness + hunger + energy);
+        totalScore = (happiness + hunger + energy + potty);
 
         if (totalScore > 100)
         {
@@ -290,7 +326,7 @@ public class GameManager : MonoBehaviour
     {
         int interactionIndex = int.Parse(inputfield.text);
         Interaction(interactionIndex);
-
+        inputfield.text = "";
     }
 
     public void Interaction(int index)
@@ -322,6 +358,7 @@ public class GameManager : MonoBehaviour
         else if (index == 4)
         {
             // Change diaper
+            potty = 10;
         }
         else if (index == 5)
         {
@@ -340,11 +377,12 @@ public class GameManager : MonoBehaviour
             // All other interactions
             if (interactionCoolDowns[index] == 0)
             {
-                happiness += interactionCharges[index] * 10;
+                happiness += interactionCharges[index];
             }
             else
             {
-                happiness -= 10;
+                // Annoys the baby when you repeat interactions too quickly
+                happiness -= 5;
             }
 
             if (interactionCharges[index] > 0)
