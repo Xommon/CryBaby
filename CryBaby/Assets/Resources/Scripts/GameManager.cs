@@ -9,9 +9,17 @@ public class GameManager : MonoBehaviour
     public int happiness = 25;
     private float secondsLeftRaw;
     public int secondsLeft;
+    private bool gameStarted = false;
 
     // UI
     public TextMeshProUGUI timerDisplay;
+    public GameObject startPanel;
+
+    public void StartGame()
+    {
+        gameStarted = true;
+        startPanel.SetActive(false);
+    }
 
     private void Start()
     {
@@ -20,6 +28,12 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        // Skip the following code if the game has not started
+        if (!gameStarted)
+        {
+            return;
+        }
+
         // Timer
         if (secondsLeft > 0)
         {
