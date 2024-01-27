@@ -6,9 +6,9 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     // Stats
-    public int happiness = 25;
-    private float secondsLeftRaw;
-    public int secondsLeft;
+    public int happiness;
+    private float secondsRaw;
+    public int[] time;
     private bool gameStarted = false;
 
     // UI
@@ -19,11 +19,27 @@ public class GameManager : MonoBehaviour
     {
         gameStarted = true;
         startPanel.SetActive(false);
+
+        // Set up clock
+        timerDisplay.gameObject.SetActive(true);
+        time[1] = 60 - time[1];
+        time[0] = 7 - time[0];
+        if (time[1] != 0)
+        {
+            time[0] -= 1;
+        }
+        if (time[1] == 60)
+        {
+            time[1] = 0;
+        }
+        secondsRaw = time[1];
     }
 
     private void Start()
     {
-        secondsLeftRaw = secondsLeft;
+        startPanel.SetActive(true);
+        timerDisplay.gameObject.SetActive(false);
+        //secondsRaw = seconds;
     }
 
     private void Update()
@@ -35,16 +51,18 @@ public class GameManager : MonoBehaviour
         }
 
         // Timer
-        if (secondsLeft > 0)
+        if (time[0] < 7)
         {
-            secondsLeftRaw -= Time.deltaTime;
-            secondsLeft = Mathf.CeilToInt(secondsLeftRaw);
-        }
-        else
-        {
-            secondsLeft = 0;
+            secondsRaw += Time.deltaTime;
+            time[1] = Mathf.FloorToInt(secondsRaw);
+
+            if (time[1] == 60)
+            {
+                time[0]++;
+                time[1] = 0;
+            }
         }
 
-        timerDisplay.text = secondsLeft.ToString();
+        timerDisplay.text = time[0].ToString() + ":" + time[1].ToString("D2");
     }
 }
