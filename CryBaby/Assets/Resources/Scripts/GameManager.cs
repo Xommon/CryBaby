@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Unity.VisualScripting;
+using System.Runtime.InteropServices;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,8 +14,22 @@ public class GameManager : MonoBehaviour
     private bool gameStarted = false;
 
     // Baby Stats
-    [Range(0, 100)]
     public int happiness;
+    public int hunger;
+    private int[] interactionCharges;
+    private int lastSecond;
+    private bool bottle = false;
+    // 0 = Bottle In
+    // 1 = Bottle Out
+
+    // 1 = Bang pot
+    // 2 = Clown toy
+    // 3 = Hand puppet
+    // 4 = Rattle
+    // 5 = Silly face
+    // 6 = Cat
+    // 7 = Matches
+    // 8 = Nap
 
     // UI
     public TextMeshProUGUI timerDisplay;
@@ -23,6 +38,9 @@ public class GameManager : MonoBehaviour
     private CanvasGroup endPanelCanvasGroup;
     public TextMeshProUGUI endPanelText;
     public int messageIndex;
+
+    // Test
+    public TMP_InputField inputfield;
 
     private void Start()
     {
@@ -68,11 +86,30 @@ public class GameManager : MonoBehaviour
         }
 
         timerDisplay.text = time[0].ToString() + ":" + time[1].ToString("D2");
+
+        // Baby stats
+        if (float.Parse((secondsRaw - 0.01f).ToString("F2")) % 30 == 0)
+        {
+            hunger--;
+        }
+
+        if (bottle && lastSecond != time[1])
+        {
+            hunger++;
+        }
+
+        // Time based checks
+        lastSecond = time[1];
     }
     public void StartGame()
     {
         gameStarted = true;
         startPanel.SetActive(false);
+
+        // Set baby stats
+        happiness = 30;
+        hunger = Random.Range(0, 11);
+        bottle = false;
 
         // Set up clock
         timerDisplay.gameObject.SetActive(true);
@@ -82,7 +119,7 @@ public class GameManager : MonoBehaviour
         {
             time[0] -= 1;
         }
-        if (time[1] == 60)
+        if (time[1] >= 60)
         {
             time[1] = 0;
         }
@@ -123,6 +160,27 @@ public class GameManager : MonoBehaviour
         if (messageIndex != message.Length)
         {
             StartCoroutine(PrintLetter(message));
+        }
+    }
+
+    // Baby Interactions
+    public void Interaction()
+    {
+        int interactionIndex = int.Parse(inputfield.text);
+        Interaction(interactionIndex);
+
+    }
+
+    public void Interaction(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                bottle = true;
+                break;
+            case 1:
+                bottle = false;
+                break;
         }
     }
 }
