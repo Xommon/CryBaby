@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using Unity.VisualScripting;
 using System.Runtime.InteropServices;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,15 +13,23 @@ public class GameManager : MonoBehaviour
     private float secondsRaw;
     public int[] time;
     private bool gameStarted = false;
+    private int totalScore;
 
     // Baby Stats
     public int happiness;
     public int hunger;
+    public int energy;
     private int[] interactionCharges;
     private int lastSecond;
     private bool bottle = false;
+    private bool nap = false;
+    private bool burped = false;
+    private int lastInteraction;
     // 0 = Bottle In
     // 1 = Bottle Out
+    // 2 = Burp
+    // 3 = Nap
+    // 4 = Change diaper
 
     // 1 = Bang pot
     // 2 = Clown toy
@@ -38,6 +47,7 @@ public class GameManager : MonoBehaviour
     private CanvasGroup endPanelCanvasGroup;
     public TextMeshProUGUI endPanelText;
     public int messageIndex;
+    public TextMeshProUGUI totalScoreText;
 
     // Test
     public TMP_InputField inputfield;
@@ -91,11 +101,39 @@ public class GameManager : MonoBehaviour
         if (float.Parse((secondsRaw - 0.01f).ToString("F2")) % 30 == 0)
         {
             hunger--;
+            energy--;
         }
 
-        if (bottle && lastSecond != time[1])
+        // Check only every 1 whole second
+        if (lastSecond != time[1])
         {
-            hunger++;
+            // Bottle
+            if (bottle)
+            {
+                hunger++;
+
+                if (hunger == 10)
+                {
+                    burped = false;
+                }
+            }
+
+            // Nap
+            if (nap)
+            {
+                energy++;
+
+                if (energy == 10)
+                {
+                    nap = false;
+                }
+            }
+
+            // Happiness decreases with hunger or energy are at 0
+            if (hunger == 0 || energy == 0)
+            {
+                happiness--;
+            }
         }
 
         // Time based checks
@@ -103,13 +141,18 @@ public class GameManager : MonoBehaviour
     }
     public void StartGame()
     {
+        // Set game stats
         gameStarted = true;
         startPanel.SetActive(false);
+        totalScore = 0;
+        totalScoreText.gameObject.SetActive(false);
 
         // Set baby stats
         happiness = 30;
         hunger = Random.Range(0, 11);
+        energy = Random.Range(0, 11);
         bottle = false;
+        nap = false;
 
         // Set up clock
         timerDisplay.gameObject.SetActive(true);
@@ -130,17 +173,31 @@ public class GameManager : MonoBehaviour
     {
         gameStarted = false;
 
-        if (happiness < 50)
+        if (hunger > 10)
+        {
+            // Remove points for overfeeding
+            hunger -= (hunger - 10);
+        }
+
+        totalScore = (happiness + hunger + energy);
+
+        if (totalScore > 100)
+        {
+            totalScore = 100;
+        }
+
+        // Parents' feedback
+        if (totalScore < 60)
         {
             PrintMessage("You had all day with the baby and they're still crying?\nMaybe you should consider a different career.");
         }
-        else if (happiness < 100)
+        else if (totalScore < 80)
         {
             PrintMessage("Thank you for taking care of our baby.");
         }
         else
         {
-            PrintMessage("Thank you for taking such great care of our baby!\nHere's a big tip for all your hard work!");
+            PrintMessage("You're a natural with babies!\nHere's a big tip for all your hard work!");
         }
     }
 
@@ -161,6 +218,12 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(PrintLetter(message));
         }
+        else
+        {
+            yield return new WaitForSeconds(1);
+            totalScoreText.text = totalScore.ToString() + "%";
+            totalScoreText.gameObject.SetActive(true);
+        }
     }
 
     // Baby Interactions
@@ -176,10 +239,24 @@ public class GameManager : MonoBehaviour
         switch (index)
         {
             case 0:
+                // Bottle in
                 bottle = true;
                 break;
             case 1:
+                // Bottle out
                 bottle = false;
+                break;
+            case 2:
+                // Burp
+                if (hunger > 9 && !burped)
+                {
+                    happiness += 10;
+                    burped = true;
+                }
+                break;
+            case 3:
+                // Nap
+                nap = true;
                 break;
         }
     }
