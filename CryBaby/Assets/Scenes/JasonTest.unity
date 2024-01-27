@@ -1852,11 +1852,13 @@ MonoBehaviour:
   time: 0500000000000000
   happiness: 30
   hunger: 0
+  energy: 0
   timerDisplay: {fileID: 202164489}
   startPanel: {fileID: 1301999332}
   endPanel: {fileID: 434555343}
   endPanelText: {fileID: 118356690}
   messageIndex: 0
+  totalScoreText: {fileID: 0}
   inputfield: {fileID: 1503963447}
 --- !u!4 &2099068820
 Transform:
