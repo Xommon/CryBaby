@@ -59,8 +59,12 @@ public class GameManager : MonoBehaviour
             if (time[1] == 60)
             {
                 time[0]++;
-                time[1] = 0;
+                secondsRaw = 0;
             }
+        }
+        else
+        {
+            time[1] = 0;
         }
 
         timerDisplay.text = time[0].ToString() + ":" + time[1].ToString("D2");
