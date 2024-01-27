@@ -19,26 +19,33 @@ public class GameManager : MonoBehaviour
     public int happiness;
     public int hunger;
     public int energy;
-    private int[] interactionCharges;
     private int lastSecond;
     private bool bottle = false;
     private bool nap = false;
     private bool burped = false;
-    private int lastInteraction;
+    private bool rocking = false;
+
+    // Interactions
+    //private int lastInteraction;
+    public int[] interactionCharges;
+    public int[] interactionCoolDowns;
     // 0 = Bottle In
     // 1 = Bottle Out
     // 2 = Burp
     // 3 = Nap
     // 4 = Change diaper
+    // 5 = Rock
+    // 6 = Stop rocking
+    private Vector3 lastMousePos;
+    public float mouseSpeed;
 
-    // 1 = Bang pot
-    // 2 = Clown toy
-    // 3 = Hand puppet
-    // 4 = Rattle
-    // 5 = Silly face
-    // 6 = Cat
-    // 7 = Matches
-    // 8 = Nap
+    // 7 = Bang pot
+    // 8 = Clown toy
+    // 9 = Hand puppet
+    // 10 = Rattle
+    // 11 = Silly face
+    // 12 = Cat
+    // 13 = Matches
 
     // UI
     public TextMeshProUGUI timerDisplay;
@@ -46,7 +53,7 @@ public class GameManager : MonoBehaviour
     public GameObject endPanel;
     private CanvasGroup endPanelCanvasGroup;
     public TextMeshProUGUI endPanelText;
-    public int messageIndex;
+    private int messageIndex;
     public TextMeshProUGUI totalScoreText;
 
     // Test
@@ -63,6 +70,24 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        // Cap stats
+        if (happiness < 0)
+        {
+            happiness = 0;
+        }
+        if (hunger < 0)
+        {
+            hunger = 0;
+        }
+        if (energy < 0)
+        {
+            energy = 0;
+        }
+
+        // Mouse speed
+        mouseSpeed = Vector3.Distance(lastMousePos, Input.mousePosition);
+        lastMousePos = Input.mousePosition;
+
         // Fade in end panel
         if (!gameStarted && time[0] == 7)
         {
@@ -130,9 +155,37 @@ public class GameManager : MonoBehaviour
             }
 
             // Happiness decreases with hunger or energy are at 0
-            if (hunger == 0 || energy == 0)
+            if (hunger == 0 || energy == 0 || hunger > 10)
             {
                 happiness--;
+            }
+
+            // Decrease cooldowns
+            for (int i = 0; i < interactionCoolDowns.Length; i++)
+            {
+                if (interactionCoolDowns[i] > 0)
+                {
+                    interactionCoolDowns[i]--;
+                }
+            }
+
+            // Rocking
+            if (rocking)
+            {
+                interactionCoolDowns[5]++;
+
+                if (interactionCoolDowns[5] > 10 || mouseSpeed > 7)
+                {
+                    happiness -= 5;
+                }
+                else if (mouseSpeed > 3)
+                {
+                    happiness += 5;
+                }
+            }
+            else if (!rocking && interactionCoolDowns[5] > 0)
+            {
+                interactionCoolDowns[5]--;
             }
         }
 
@@ -153,6 +206,12 @@ public class GameManager : MonoBehaviour
         energy = Random.Range(0, 11);
         bottle = false;
         nap = false;
+        burped = false;
+        rocking = false;
+        for (int i = 7; i < interactionCharges.Length; i++)
+        {
+            interactionCharges[i] = Random.Range(-2, 3);
+        }
 
         // Set up clock
         timerDisplay.gameObject.SetActive(true);
@@ -236,28 +295,62 @@ public class GameManager : MonoBehaviour
 
     public void Interaction(int index)
     {
-        switch (index)
+        if (index == 0)
         {
-            case 0:
-                // Bottle in
-                bottle = true;
-                break;
-            case 1:
-                // Bottle out
-                bottle = false;
-                break;
-            case 2:
-                // Burp
-                if (hunger > 9 && !burped)
-                {
-                    happiness += 10;
-                    burped = true;
-                }
-                break;
-            case 3:
-                // Nap
-                nap = true;
-                break;
+            // Bottle in
+            bottle = true;
+        }
+        else if (index == 1)
+        {
+            // Bottle out
+            bottle = false;
+        }
+        else if (index == 2)
+        {
+            // Burp
+            if (hunger > 9 && !burped)
+            {
+                happiness += 10;
+                burped = true;
+            }
+        }
+        else if (index == 3)
+        {
+            // Nap
+            nap = true;
+        }
+        else if (index == 4)
+        {
+            // Change diaper
+        }
+        else if (index == 5)
+        {
+            // Rock
+            rocking = true;
+            interactionCoolDowns[5] = 0;
+            lastMousePos = Input.mousePosition;
+        }
+        else if (index == 6)
+        {
+            // Stop rocking
+            rocking = false;
+        }
+        else
+        {
+            // All other interactions
+            if (interactionCoolDowns[index] == 0)
+            {
+                happiness += interactionCharges[index] * 10;
+            }
+            else
+            {
+                happiness -= 10;
+            }
+
+            if (interactionCharges[index] > 0)
+            {
+                interactionCoolDowns[index] = 20;
+            }
         }
     }
 }
