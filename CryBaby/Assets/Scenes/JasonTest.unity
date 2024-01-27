@@ -1844,7 +1844,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2099068818}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 033166965c88f9241af9d591d2ead6a0, type: 3}
   m_Name: 
@@ -1853,11 +1853,13 @@ MonoBehaviour:
   happiness: 30
   hunger: 0
   energy: 0
+  interactionCharges: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  interactionCoolDowns: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  mouseSpeed: 0
   timerDisplay: {fileID: 202164489}
   startPanel: {fileID: 1301999332}
   endPanel: {fileID: 434555343}
   endPanelText: {fileID: 118356690}
-  messageIndex: 0
   totalScoreText: {fileID: 0}
   inputfield: {fileID: 1503963447}
 --- !u!4 &2099068820
@@ -1935,6 +1937,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 613016698520709794, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 2099068819}
+    - target: {fileID: 899965401928744079, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 2099068819}
+    - target: {fileID: 1433299586550188246, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 2099068819}
+    - target: {fileID: 1468293200594069641, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 2099068819}
+    - target: {fileID: 1601128351271722341, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 2099068819}
+    - target: {fileID: 4144590681463152016, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 2099068819}
+    - target: {fileID: 4912053212261346166, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 2099068819}
+    - target: {fileID: 5155338271722869026, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 2099068819}
+    - target: {fileID: 6911908910766168097, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 2099068819}
     - target: {fileID: 7241106379011553734, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.47636402
@@ -1979,6 +2017,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Full Scene
       objectReference: {fileID: 0}
+    - target: {fileID: 8651172275844981839, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 2099068819}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

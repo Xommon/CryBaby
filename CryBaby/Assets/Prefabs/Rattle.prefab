@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 8489769537913534149}
   - component: {fileID: 1931244814771039427}
   - component: {fileID: -6643849051593194068}
+  - component: {fileID: 86199964381202909}
   m_Layer: 0
   m_Name: Rattle
   m_TagString: Untagged
@@ -168,3 +169,17 @@ MonoBehaviour:
   highlightMaterial: {fileID: 2100000, guid: cd45de90380abc247ad096b9127e3dc6, type: 2}
   highlightedSprites:
   - {fileID: 7923034320495093471}
+--- !u!114 &86199964381202909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4091965215480479800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0403cceb65ce9e745b7a0b051581d4d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  interactionIndex: 0

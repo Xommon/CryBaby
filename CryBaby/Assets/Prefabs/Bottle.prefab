@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3974260269444045328}
   - component: {fileID: 802902874266485896}
   - component: {fileID: 8339802871501004345}
+  - component: {fileID: 8902904814507905319}
   m_Layer: 0
   m_Name: Bottle
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 53206444329406193}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.95, y: -2.57, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -84,6 +85,20 @@ MonoBehaviour:
   highlightMaterial: {fileID: 2100000, guid: cd45de90380abc247ad096b9127e3dc6, type: 2}
   highlightedSprites:
   - {fileID: 411078375519990653}
+--- !u!114 &8902904814507905319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53206444329406193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0403cceb65ce9e745b7a0b051581d4d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  interactionIndex: 0
 --- !u!1 &9064431693052952151
 GameObject:
   m_ObjectHideFlags: 0

@@ -243,6 +243,7 @@ GameObject:
   - component: {fileID: 3737651393528607177}
   - component: {fileID: 2382347713569301105}
   - component: {fileID: 1801977629893748128}
+  - component: {fileID: 6245803384448402323}
   m_Layer: 0
   m_Name: Matches
   m_TagString: Untagged
@@ -317,3 +318,17 @@ MonoBehaviour:
   highlightMaterial: {fileID: 2100000, guid: cd45de90380abc247ad096b9127e3dc6, type: 2}
   highlightedSprites:
   - {fileID: 242704909973080035}
+--- !u!114 &6245803384448402323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6286117736390317330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0403cceb65ce9e745b7a0b051581d4d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  interactionIndex: 0

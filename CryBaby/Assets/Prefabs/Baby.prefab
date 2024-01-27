@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 904749454362083917}
   - component: {fileID: 3536780753413331221}
   - component: {fileID: 6668585186418537233}
+  - component: {fileID: 7215791750016104207}
   m_Layer: 0
   m_Name: Baby
   m_TagString: Untagged
@@ -118,6 +119,20 @@ MonoBehaviour:
   highlightedSprites:
   - {fileID: 1215467038520050867}
   - {fileID: 7007294283294283733}
+--- !u!114 &7215791750016104207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986397381679807664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0403cceb65ce9e745b7a0b051581d4d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  interactionIndex: 0
 --- !u!1 &3283008769542966520
 GameObject:
   m_ObjectHideFlags: 0
