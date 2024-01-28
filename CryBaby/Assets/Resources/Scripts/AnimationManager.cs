@@ -16,11 +16,11 @@ public class AnimationManager : MonoBehaviour
         {
             case Anims.CupFall:
                 animator.SetTrigger("CupFall");
-                audioManager.Play("CupFall", 2);
+                audioManager.Play("CupFall");
                 break;
             case Anims.CupDrink:
                 animator.SetTrigger("CupDrink");
-                audioManager.Play("CupDrink", 1);
+                audioManager.Play("CupDrink");
                 break;
             case Anims.StartNap:
                 animator.SetTrigger("StartNap");

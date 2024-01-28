@@ -6,6 +6,7 @@ using System.Reflection;
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
+    public GameManager gameManager;
 
     private void Awake()
     {
@@ -13,13 +14,21 @@ public class AudioManager : MonoBehaviour
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
-            //s.source.volume = s.volume;
+            if (s.music)
+            {
+                s.source.volume = gameManager.musicVolume;
+            }
+            else
+            {
+                s.source.volume = s.volume;
+            }
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+            
         }
     }
 
-    public void Play(string name, float volume)
+    public void Play(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         try
@@ -27,9 +36,23 @@ public class AudioManager : MonoBehaviour
             if (!s.source.isPlaying)
             {
                 s.source.Play();
-                Debug.Log(name + " is playing at volume " + volume);
+                Debug.Log(name + " is playing");
             }
-            s.source.volume = volume;
+            s.source.volume = gameManager.musicVolume;
+        }
+        catch
+        {
+            Debug.LogWarning("Cannot find sound file: " + name);
+        }
+    }
+
+    public void Stop(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+
+        try
+        {
+            s.source.Stop();
         }
         catch
         {
