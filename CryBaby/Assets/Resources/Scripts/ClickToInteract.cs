@@ -8,10 +8,41 @@ public class ClickToInteract : MonoBehaviour
     private GameManager gameManager;
     [SerializeField]
     private Interaction interactionIndex;
+    private Animation anim;
+    private Animator animator;
+
+    private void Start()
+    {
+        if (GetComponent<Animation>() != null)
+            anim = GetComponent<Animation>();
+        if (GetComponent <Animator>() != null)
+            animator = GetComponent<Animator>();
+    }
 
     private void OnMouseUp()
     {
-        gameManager.Interaction((int)interactionIndex);
+        CallInteractionOnGameManager();
+        if (GetComponent<Animation>() != null)
+            RunAnimation();
+    }
+
+    private void CallInteractionOnGameManager()
+    {
+        if (GetComponent<Animator>() != null)
+        {
+            gameManager.Interaction((int)interactionIndex, animator);
+        }
+        else
+        {
+            gameManager.Interaction((int)interactionIndex);
+        }
+            
+    }
+
+    private void RunAnimation()
+    {
+        Debug.Log("Run");
+        anim.Play();
     }
 
     private enum Interaction

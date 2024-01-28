@@ -329,7 +329,7 @@ public class GameManager : MonoBehaviour
         inputfield.text = "";
     }
 
-    public void Interaction(int index)
+    public void Interaction(int index, Animator animator = null) //Added optional arguments for unique animations - Jason
     {
         if (index == 0)
         {
@@ -372,6 +372,19 @@ public class GameManager : MonoBehaviour
             // Stop rocking
             rocking = false;
         }
+        //Added by Jason for cup interaction
+        else if (index == 14)
+        {
+            if (Randomizer(1, 100) > 66)
+            {
+                GetComponent<AnimationManager>().RunAnimationController(AnimationManager.Anims.CupFall, animator);
+            }
+            else
+            {
+                GetComponent<AnimationManager>().RunAnimationController(AnimationManager.Anims.CupDrink, animator);
+            }
+            
+        }
         else
         {
             // All other interactions
@@ -390,5 +403,12 @@ public class GameManager : MonoBehaviour
                 interactionCoolDowns[index] = 20;
             }
         }
+    }
+
+    private int Randomizer(int min, int max)
+    {
+        int randomInt = Random.Range(min, max + 1);  
+        
+        return randomInt;
     }
 }
