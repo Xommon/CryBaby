@@ -2195,18 +2195,18 @@ MonoBehaviour:
   sounds:
   - name: 0
     clip: {fileID: 8300000, guid: 6b5b7a574e3a4344ca73ba6f26c38321, type: 3}
-    volume: 1
     pitch: 1
+    loop: 0
     source: {fileID: 0}
   - name: 1
     clip: {fileID: 8300000, guid: f6d27e48db1001a47aae15f5d87bc0e4, type: 3}
-    volume: 1
     pitch: 1
+    loop: 0
     source: {fileID: 0}
   - name: 2
     clip: {fileID: 8300000, guid: 0797b9529e311ca4f8bede8acaaab31e, type: 3}
-    volume: 1
     pitch: 1
+    loop: 0
     source: {fileID: 0}
 --- !u!1 &2032948369
 GameObject:
