@@ -904,33 +904,32 @@ MonoBehaviour:
 
     // 2 = Burp
 
-    // 3
-    = Nap
+    // 3 = Nap
 
-    // 4 = Change diaper
+    //
+    4 = Change diaper
 
     // 5 = Start rocking
 
-    // 6 = Stop
-    rocking
+    // 6 = Stop rocking
 
-    // 7 = Bang pot
+    //
+    7 = Bang pot
 
     // 8 = Clown toy
 
     // 9 = Hand puppet
 
-    //
-    10 = Rattle
+    // 10 = Rattle
 
-    // 11 = Silly face
+    //
+    11 = Silly face
 
     // 12 = Cat
 
     // 13 = Matches
 
-    //
-    14 = Cup'
+    // 14 = Cup'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
