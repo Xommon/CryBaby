@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     private bool nap = false;
     private bool burped = false;
     private bool rocking = false;
+    public SpriteRenderer babyFace;
+    public Sprite[] babyFaces;
 
     // Interactions
     //private int lastInteraction;
@@ -315,6 +317,38 @@ public class GameManager : MonoBehaviour
         messageIndex = 0;
         endPanelText.text = "\"\"";
         StartCoroutine(PrintLetter(message));
+    }
+
+    IEnumerator ChangeFace(int charge, float duration)
+    {
+        if (charge > 0)
+        {
+            // Approve
+            babyFace.sprite = babyFaces[1];
+        }
+        if (charge < 0)
+        {
+            // Disapprove
+            babyFace.sprite = babyFaces[2];
+        }
+
+        yield return new WaitForSeconds(duration);
+
+        if (totalScore < 60)
+        {
+            // Crying
+            babyFace.sprite = babyFaces[4];
+        }
+        else if (totalScore < 80)
+        {
+            // Neutral
+            babyFace.sprite = babyFaces[0];
+        }
+        else
+        {
+            // Laughing
+            babyFace.sprite = babyFaces[3];
+        }
     }
 
     IEnumerator PrintLetter(string message)
