@@ -55,7 +55,7 @@ public class ClickToInteract : MonoBehaviour
 
     public void PlaySounds()
     {
-        audioManager.Play(gameObject.transform.name.ToString(), 2);
+        audioManager.Play(gameObject.transform.name.ToString());
     }
 
     public enum Interaction

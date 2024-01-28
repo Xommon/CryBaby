@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     private bool gameStarted = false;
     private int totalScore;
     public AudioManager audioManager;
+    [Range(0.0f, 1.0f)]
+    public float musicVolume;
 
     // Baby Stats
     public int happiness;
@@ -69,7 +71,7 @@ public class GameManager : MonoBehaviour
         timerDisplay.gameObject.SetActive(false);
         endPanelCanvasGroup = endPanel.GetComponent<CanvasGroup>();
         endPanelCanvasGroup.alpha = 0;
-        PlayMusic(0);
+        audioManager.Play("drums");
     }
 
     private void Update()
@@ -206,28 +208,6 @@ public class GameManager : MonoBehaviour
 
         // Time based checks
         lastSecond = time[1];
-
-
-        // Change music
-        totalScore = (happiness + hunger + energy + potty);
-
-        if (totalScore > 100)
-        {
-            totalScore = 100;
-        }
-
-        if (totalScore < 60)
-        {
-            PlayMusic(2);
-        }
-        else if (totalScore < 80)
-        {
-            PlayMusic(1);
-        }
-        else
-        {
-            PlayMusic(0);
-        }
     }
     public void StartGame()
     {
@@ -236,6 +216,10 @@ public class GameManager : MonoBehaviour
         startPanel.SetActive(false);
         totalScore = 0;
         totalScoreText.gameObject.SetActive(false);
+
+        // Change music
+        audioManager.Stop("drums");
+        audioManager.Play("music");
 
         // Set baby stats
         happiness = 90;
@@ -292,6 +276,10 @@ public class GameManager : MonoBehaviour
 
     private void EndGame()
     {
+        // Change music
+        audioManager.Stop("music");
+        audioManager.Play("drums");
+
         gameStarted = false;
 
         if (hunger > 10)
@@ -451,20 +439,5 @@ public class GameManager : MonoBehaviour
         int randomInt = Random.Range(min, max + 1);  
         
         return randomInt;
-    }
-
-    private void PlayMusic(int index)
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            if (i == index)
-            {
-                audioManager.Play(index.ToString(), 0.25f);
-            }
-            else
-            {
-                audioManager.Play(index.ToString(), 0.0f);
-            }
-        }
     }
 }

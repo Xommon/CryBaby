@@ -1041,7 +1041,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: 150}
+  m_AnchoredPosition: {x: -248, y: 131.38}
   m_SizeDelta: {x: 85, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &629230051
@@ -1111,6 +1111,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1301999332}
     - target: {fileID: 4540450414902186267, guid: e0294d47a00e4e542b6396a5d085fafa, type: 3}
+      propertyPath: musicVolume
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4540450414902186267, guid: e0294d47a00e4e542b6396a5d085fafa, type: 3}
       propertyPath: audioManager
       value: 
       objectReference: {fileID: 1744450422}
@@ -1132,7 +1136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4540450414902186267, guid: e0294d47a00e4e542b6396a5d085fafa, type: 3}
       propertyPath: time.Array.data[1]
-      value: 30
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 4540450414902186267, guid: e0294d47a00e4e542b6396a5d085fafa, type: 3}
       propertyPath: interactionCharges.Array.size
@@ -2094,61 +2098,77 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: 0
-    clip: {fileID: 8300000, guid: 6b5b7a574e3a4344ca73ba6f26c38321, type: 3}
+  - name: drums
+    clip: {fileID: 8300000, guid: 5c22ebd4dedcefd40ad43858e9875034, type: 3}
+    volume: 0
+    pitch: 1
+    loop: 1
+    music: 1
+    source: {fileID: 0}
+  - name: music
+    clip: {fileID: 8300000, guid: 6e58bc13f3ea4f546a03e433766cda7d, type: 3}
+    volume: 0
     pitch: 1
     loop: 0
-    source: {fileID: 0}
-  - name: 1
-    clip: {fileID: 8300000, guid: f6d27e48db1001a47aae15f5d87bc0e4, type: 3}
-    pitch: 1.58
-    loop: 0
-    source: {fileID: 0}
-  - name: 2
-    clip: {fileID: 8300000, guid: 0797b9529e311ca4f8bede8acaaab31e, type: 3}
-    pitch: 1
-    loop: 0
+    music: 1
     source: {fileID: 0}
   - name: Pot
     clip: {fileID: 8300000, guid: 868774b1a141ca54fa7a7a037735b6ec, type: 3}
+    volume: 0
     pitch: 1
     loop: 0
+    music: 0
     source: {fileID: 0}
   - name: CupFall
     clip: {fileID: 8300000, guid: c9bcc2d940c645347aeb49f55fbadd6b, type: 3}
+    volume: 0
     pitch: 1
     loop: 0
+    music: 0
     source: {fileID: 0}
   - name: CupDrink
     clip: {fileID: 8300000, guid: a82531ab3a50c14409483d7d64d02960, type: 3}
+    volume: 0
     pitch: 1
     loop: 0
+    music: 0
     source: {fileID: 0}
   - name: Matches
     clip: {fileID: 8300000, guid: 0c29eaa7dee757548ab4349c67bc0e34, type: 3}
+    volume: 0
     pitch: 1
     loop: 0
+    music: 0
     source: {fileID: 0}
   - name: Rattle
     clip: {fileID: 8300000, guid: 8d7b18081801f94489bae460539882f6, type: 3}
+    volume: 0
     pitch: 1
     loop: 0
+    music: 0
     source: {fileID: 0}
   - name: Cat
     clip: {fileID: 8300000, guid: 4ecca3c606e3352458c4f7ae66c3067b, type: 3}
+    volume: 0
     pitch: 1
     loop: 0
+    music: 0
     source: {fileID: 0}
   - name: Diaper
     clip: {fileID: 8300000, guid: c05370d0dd24173458227b037153d6a5, type: 3}
+    volume: 0
     pitch: 1
     loop: 0
+    music: 0
     source: {fileID: 0}
   - name: Burp Rag
     clip: {fileID: 8300000, guid: 15baa0ff4d8b30d4d90103b857310fb3, type: 3}
+    volume: 0
     pitch: 1
     loop: 0
+    music: 0
     source: {fileID: 0}
+  gameManager: {fileID: 707606888}
 --- !u!1 &2032948369
 GameObject:
   m_ObjectHideFlags: 0
