@@ -7,6 +7,8 @@ public class AnimationManager : MonoBehaviour
     
     [HideInInspector]
     public Anims anims;
+    [SerializeField]
+    private AudioManager audioManager;
 
     public void RunAnimationController(Anims anim, Animator animator)
     {        
@@ -14,9 +16,11 @@ public class AnimationManager : MonoBehaviour
         {
             case Anims.CupFall:
                 animator.SetTrigger("CupFall");
+                audioManager.Play("CupFall", 2);
                 break;
             case Anims.CupDrink:
                 animator.SetTrigger("CupDrink");
+                audioManager.Play("CupDrink", 1);
                 break;
             case Anims.StartNap:
                 animator.SetTrigger("StartNap");

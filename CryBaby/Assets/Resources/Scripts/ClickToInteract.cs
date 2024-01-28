@@ -11,6 +11,10 @@ public class ClickToInteract : MonoBehaviour
     [HideInInspector]
     public Animation anim;
     private Animator animator;
+    [HideInInspector]
+    public AudioManager audioManager;
+    [SerializeField]
+    private bool playSound = false;
 
     private void Start()
     {
@@ -18,6 +22,8 @@ public class ClickToInteract : MonoBehaviour
             anim = GetComponent<Animation>();
         if (GetComponent <Animator>() != null)
             animator = GetComponent<Animator>();
+
+        audioManager = gameManager.GetComponent<AudioManager>();
     }
 
     private void OnMouseUp()
@@ -25,6 +31,8 @@ public class ClickToInteract : MonoBehaviour
         CallInteractionOnGameManager();
         if (GetComponent<Animation>() != null)
             RunAnimation();
+        if(playSound)
+            PlaySounds();
     }
 
     private void CallInteractionOnGameManager()
@@ -43,6 +51,11 @@ public class ClickToInteract : MonoBehaviour
     public void RunAnimation()
     {
         anim.Play();
+    }
+
+    public void PlaySounds()
+    {
+        audioManager.Play(gameObject.transform.name.ToString(), 2);
     }
 
     public enum Interaction
