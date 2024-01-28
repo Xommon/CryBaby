@@ -238,7 +238,7 @@ public class GameManager : MonoBehaviour
         totalScoreText.gameObject.SetActive(false);
 
         // Set baby stats
-        happiness = 30;
+        happiness = 90;
         hunger = Random.Range(0, 11);
         energy = Random.Range(0, 11);
         potty = 10;
