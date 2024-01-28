@@ -1103,6 +1103,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3814484108357099885, guid: e0294d47a00e4e542b6396a5d085fafa, type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 1744450422}
     - target: {fileID: 4540450414902186267, guid: e0294d47a00e4e542b6396a5d085fafa, type: 3}
       propertyPath: endPanel
       value: 
@@ -2195,18 +2199,28 @@ MonoBehaviour:
   sounds:
   - name: 0
     clip: {fileID: 8300000, guid: 6b5b7a574e3a4344ca73ba6f26c38321, type: 3}
-    volume: 1
     pitch: 1
+    loop: 0
     source: {fileID: 0}
   - name: 1
     clip: {fileID: 8300000, guid: f6d27e48db1001a47aae15f5d87bc0e4, type: 3}
-    volume: 1
     pitch: 1
+    loop: 0
     source: {fileID: 0}
   - name: 2
     clip: {fileID: 8300000, guid: 0797b9529e311ca4f8bede8acaaab31e, type: 3}
-    volume: 1
     pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Pot
+    clip: {fileID: 8300000, guid: 868774b1a141ca54fa7a7a037735b6ec, type: 3}
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CupFall
+    clip: {fileID: 8300000, guid: c9bcc2d940c645347aeb49f55fbadd6b, type: 3}
+    pitch: 1
+    loop: 0
     source: {fileID: 0}
 --- !u!1 &2032948369
 GameObject:
@@ -2464,6 +2478,10 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 707606888}
+    - target: {fileID: 899965401928744079, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
+      propertyPath: interactionIndex
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 949863491018967518, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
       propertyPath: gameManager
       value: 
@@ -2472,30 +2490,74 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 707606888}
+    - target: {fileID: 1433299586550188246, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
+      propertyPath: interactionIndex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1468293200594069641, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 707606888}
+    - target: {fileID: 1468293200594069641, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
+      propertyPath: interactionIndex
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 1601128351271722341, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 707606888}
+    - target: {fileID: 1601128351271722341, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
+      propertyPath: interactionIndex
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913459554947766416, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: 7400000, guid: d97304f69e1fa7e43be30bae645c6f5e, type: 2}
+    - target: {fileID: 3913459554947766416, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
+      propertyPath: m_Animations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913459554947766416, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
+      propertyPath: m_Animations.Array.data[0]
+      value: 
+      objectReference: {fileID: 7400000, guid: d97304f69e1fa7e43be30bae645c6f5e, type: 2}
+    - target: {fileID: 3913459554947766416, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
+      propertyPath: m_Animations.Array.data[1]
+      value: 
+      objectReference: {fileID: 7400000, guid: d97304f69e1fa7e43be30bae645c6f5e, type: 2}
     - target: {fileID: 4144590681463152016, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 707606888}
+    - target: {fileID: 4144590681463152016, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
+      propertyPath: interactionIndex
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4912053212261346166, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 707606888}
+    - target: {fileID: 4912053212261346166, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
+      propertyPath: interactionIndex
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5155338271722869026, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 707606888}
+    - target: {fileID: 5155338271722869026, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
+      propertyPath: interactionIndex
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6911908910766168097, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 707606888}
+    - target: {fileID: 6911908910766168097, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
+      propertyPath: interactionIndex
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 7241106379011553734, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.47636402
@@ -2540,10 +2602,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Full Scene
       objectReference: {fileID: 0}
+    - target: {fileID: 8199462414699692892, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
+      propertyPath: m_Name
+      value: Pot
+      objectReference: {fileID: 0}
     - target: {fileID: 8651172275844981839, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 707606888}
+    - target: {fileID: 8651172275844981839, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
+      propertyPath: interactionIndex
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
