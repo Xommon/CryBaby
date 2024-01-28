@@ -459,7 +459,7 @@ public class GameManager : MonoBehaviour
         {
             if (i == index)
             {
-                audioManager.Play(index.ToString(), 1.0f);
+                audioManager.Play(index.ToString(), 0.25f);
             }
             else
             {
