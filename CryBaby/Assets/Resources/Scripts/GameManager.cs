@@ -162,7 +162,8 @@ public class GameManager : MonoBehaviour
                 if (energy == 10)
                 {
                     nap = false;
-                    //Undo napping animations
+                    Animator animator = GameObject.FindGameObjectWithTag("Blanket").GetComponent<Animator>();
+                    GetComponent<AnimationManager>().RunAnimationController(AnimationManager.Anims.WakeUp, animator);
                 }
             }
 
@@ -354,7 +355,17 @@ public class GameManager : MonoBehaviour
         else if (index == 3)
         {
             // Nap
-            nap = true;
+            if (!nap)
+            {
+                nap = true;
+                GetComponent<AnimationManager>().RunAnimationController(AnimationManager.Anims.StartNap, animator);
+            }
+            else
+            {
+                nap = false;
+                GetComponent<AnimationManager>().RunAnimationController(AnimationManager.Anims.WakeUp, animator);
+                //Decrease hapiness
+            }
         }
         else if (index == 4)
         {
