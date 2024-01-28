@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public int[] time;
     private bool gameStarted = false;
     private int totalScore;
+    public AudioManager audioManager;
 
     // Baby Stats
     public int happiness;
@@ -68,6 +69,7 @@ public class GameManager : MonoBehaviour
         timerDisplay.gameObject.SetActive(false);
         endPanelCanvasGroup = endPanel.GetComponent<CanvasGroup>();
         endPanelCanvasGroup.alpha = 0;
+        PlayMusic(0);
     }
 
     private void Update()
@@ -202,6 +204,28 @@ public class GameManager : MonoBehaviour
 
         // Time based checks
         lastSecond = time[1];
+
+
+        // Change music
+        totalScore = (happiness + hunger + energy + potty);
+
+        if (totalScore > 100)
+        {
+            totalScore = 100;
+        }
+
+        if (totalScore < 60)
+        {
+            PlayMusic(2);
+        }
+        else if (totalScore < 80)
+        {
+            PlayMusic(1);
+        }
+        else
+        {
+            PlayMusic(0);
+        }
     }
     public void StartGame()
     {
@@ -331,6 +355,11 @@ public class GameManager : MonoBehaviour
 
     public void Interaction(int index, Animator animator = null) //Added optional arguments for unique animations - Jason
     {
+        if (nap)
+        {
+            return;
+        }
+
         if (index == 0)
         {
             // Bottle in
@@ -372,19 +401,6 @@ public class GameManager : MonoBehaviour
             // Stop rocking
             rocking = false;
         }
-        //Added by Jason for cup interaction
-        else if (index == 14)
-        {
-            if (Randomizer(1, 100) > 66)
-            {
-                GetComponent<AnimationManager>().RunAnimationController(AnimationManager.Anims.CupFall, animator);
-            }
-            else
-            {
-                GetComponent<AnimationManager>().RunAnimationController(AnimationManager.Anims.CupDrink, animator);
-            }
-            
-        }
         else
         {
             // All other interactions
@@ -402,6 +418,19 @@ public class GameManager : MonoBehaviour
             {
                 interactionCoolDowns[index] = 20;
             }
+
+            if (index == 14)
+            {
+                if (Randomizer(1, 100) > 66)
+                {
+                    GetComponent<AnimationManager>().RunAnimationController(AnimationManager.Anims.CupFall, animator);
+                }
+                else
+                {
+                    GetComponent<AnimationManager>().RunAnimationController(AnimationManager.Anims.CupDrink, animator);
+                }
+
+            }
         }
     }
 
@@ -410,5 +439,20 @@ public class GameManager : MonoBehaviour
         int randomInt = Random.Range(min, max + 1);  
         
         return randomInt;
+    }
+
+    private void PlayMusic(int index)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (i == index)
+            {
+                audioManager.Play(index.ToString(), 1.0f);
+            }
+            else
+            {
+                audioManager.Play(index.ToString(), 0.0f);
+            }
+        }
     }
 }
