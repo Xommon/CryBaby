@@ -15,7 +15,6 @@ public class RockBaby : MonoBehaviour
 
     private void OnMouseUp()
     {
-        Debug.Log("Stop Rocking! Mouse Up");
         StopRockingBaby();
     }
 
@@ -41,7 +40,6 @@ public class RockBaby : MonoBehaviour
 
     private void StopRockingBaby()
     {
-        Debug.Log("Stop Rocking function");
         isRocking = false;
         this.transform.position = babyStartPOS;
     }

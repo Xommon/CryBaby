@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class ClickToInteract : MonoBehaviour
 {
-    [SerializeField]
-    private GameManager gameManager;
+
+    public GameManager gameManager;
     [SerializeField]
     private Interaction interactionIndex;
-    private Animation anim;
+    [HideInInspector]
+    public Animation anim;
     private Animator animator;
 
     private void Start()
@@ -39,13 +40,12 @@ public class ClickToInteract : MonoBehaviour
             
     }
 
-    private void RunAnimation()
+    public void RunAnimation()
     {
-        Debug.Log("Run");
         anim.Play();
     }
 
-    private enum Interaction
+    public enum Interaction
     {
         BottleIn, BottleOut, Burp, Nap, ChangeDiaper, Rock, StopRocking, BangPot, ClownToy, HandPuppet, Rattle, SillyFace, Cat, Matches, Cup
     }

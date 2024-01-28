@@ -2265,18 +2265,14 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 707606888}
-    - target: {fileID: 613016698520709794, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
-      propertyPath: interactionIndex
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 899965401928744079, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 707606888}
-    - target: {fileID: 899965401928744079, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
-      propertyPath: interactionIndex
-      value: 10
-      objectReference: {fileID: 0}
+    - target: {fileID: 949863491018967518, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 707606888}
     - target: {fileID: 1433299586550188246, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
       propertyPath: gameManager
       value: 
@@ -2285,58 +2281,26 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 707606888}
-    - target: {fileID: 1468293200594069641, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
-      propertyPath: interactionIndex
-      value: 13
-      objectReference: {fileID: 0}
     - target: {fileID: 1601128351271722341, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 707606888}
-    - target: {fileID: 1601128351271722341, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
-      propertyPath: interactionIndex
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2511449988052367235, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4144590681463152016, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 707606888}
-    - target: {fileID: 4144590681463152016, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
-      propertyPath: interactionIndex
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4374067510077114753, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4912053212261346166, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 707606888}
-    - target: {fileID: 4912053212261346166, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
-      propertyPath: interactionIndex
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 5155338271722869026, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 707606888}
-    - target: {fileID: 5155338271722869026, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
-      propertyPath: interactionIndex
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 6911908910766168097, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 707606888}
-    - target: {fileID: 6911908910766168097, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
-      propertyPath: interactionIndex
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 7241106379011553734, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.47636402
@@ -2385,10 +2349,6 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 707606888}
-    - target: {fileID: 8651172275844981839, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
-      propertyPath: interactionIndex
-      value: 14
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

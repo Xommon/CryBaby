@@ -9,9 +9,7 @@ public class AnimationManager : MonoBehaviour
     public Anims anims;
 
     public void RunAnimationController(Anims anim, Animator animator)
-    {
-        Debug.Log("RunAnim");
-        
+    {        
         switch (anim)
         {
             case Anims.CupFall:
@@ -20,6 +18,12 @@ public class AnimationManager : MonoBehaviour
             case Anims.CupDrink:
                 animator.SetTrigger("CupDrink");
                 break;
+            case Anims.StartNap:
+                animator.SetTrigger("StartNap");
+                break;
+            case Anims.WakeUp:
+                animator.SetTrigger("WakeUp");
+                break;
             default:
                 break;
         }
@@ -27,6 +31,6 @@ public class AnimationManager : MonoBehaviour
 
     public enum Anims
     {
-        CupFall, CupDrink
+        CupFall, CupDrink, StartNap, WakeUp
     }
 }
