@@ -2144,6 +2144,11 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Burp Rag
+    clip: {fileID: 8300000, guid: 15baa0ff4d8b30d4d90103b857310fb3, type: 3}
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!1 &2032948369
 GameObject:
   m_ObjectHideFlags: 0
@@ -2428,14 +2433,14 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 707606888}
+    - target: {fileID: 6549841896730041994, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 707606888}
     - target: {fileID: 6911908910766168097, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 707606888}
-    - target: {fileID: 7204252843393603415, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
-      propertyPath: playSound
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7204252843393603415, guid: 4464bd6791f7546409ded1646fa3b2ea, type: 3}
       propertyPath: gameManager
       value: 
