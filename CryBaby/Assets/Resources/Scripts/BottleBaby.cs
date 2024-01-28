@@ -26,7 +26,7 @@ public class BottleBaby : MonoBehaviour
     private void Start()
     {
         currentPOS = this.transform.position;
-        bottleRotation = this.transform.rotation;
+        bottleRotation = this.gameObject.transform.GetChild(0).rotation;
         babyMouthPOS = baby.position;
     }
 
@@ -41,6 +41,6 @@ public class BottleBaby : MonoBehaviour
     {
         clickToInteract.anim.Stop();
         this.transform.position = currentPOS;
-        this.transform.rotation = bottleRotation;
+        this.gameObject.transform.GetChild(0).rotation = bottleRotation;
     }
 }
