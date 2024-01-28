@@ -162,6 +162,7 @@ public class GameManager : MonoBehaviour
                 if (energy == 10)
                 {
                     nap = false;
+                    //Undo napping animations
                 }
             }
 

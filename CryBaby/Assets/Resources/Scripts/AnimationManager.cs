@@ -9,9 +9,7 @@ public class AnimationManager : MonoBehaviour
     public Anims anims;
 
     public void RunAnimationController(Anims anim, Animator animator)
-    {
-        Debug.Log("RunAnim");
-        
+    {        
         switch (anim)
         {
             case Anims.CupFall:
