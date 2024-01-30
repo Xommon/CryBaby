@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using Unity.VisualScripting;
 using System.Runtime.InteropServices;
 using UnityEngine.SocialPlatforms.Impl;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
     public AudioManager audioManager;
     [Range(0.0f, 1.0f)]
     public float musicVolume;
+    public GameObject napBlocker;
 
     // Baby Stats
     public int happiness;
@@ -78,6 +80,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        // Block other interactions while napping
+        napBlocker.SetActive(nap);
+
         // Cap stats
         if (happiness < 0)
         {
@@ -177,6 +182,7 @@ public class GameManager : MonoBehaviour
             if (hunger == 0 || energy == 0 || hunger > 10 || potty == 0)
             {
                 happiness--;
+                StartCoroutine(ChangeFace(3, 0));
             }
 
             // Decrease cooldowns
@@ -225,8 +231,8 @@ public class GameManager : MonoBehaviour
 
         // Set baby stats
         happiness = 90;
-        hunger = Random.Range(0, 11);
-        energy = Random.Range(0, 11);
+        hunger = UnityEngine.Random.Range(0, 11);
+        energy = UnityEngine.Random.Range(0, 11);
         potty = 10;
         bottle = false;
         nap = false;
@@ -248,7 +254,7 @@ public class GameManager : MonoBehaviour
 
             if (chargeBias == 0)
             {
-                if (Random.Range(0, 2) == 0)
+                if (UnityEngine.Random.Range(0, 2) == 0)
                 {
                     chargeBias = 1;
                 }
@@ -258,7 +264,7 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            interactionCharges[i] = Random.Range(1, 3) * chargeBias * 10;
+            interactionCharges[i] = UnityEngine.Random.Range(1, 3) * chargeBias * 10;
         }
 
         // Set up clock
@@ -441,11 +447,13 @@ public class GameManager : MonoBehaviour
             if (interactionCoolDowns[index] == 0)
             {
                 happiness += interactionCharges[index];
+                StartCoroutine(ChangeFace(interactionCharges[index], 2.0f));
             }
             else
             {
                 // Annoys the baby when you repeat interactions too quickly
                 happiness -= 5;
+                StartCoroutine(ChangeFace(-1, 2.0f));
             }
 
             if (interactionCharges[index] > 0)
@@ -463,14 +471,13 @@ public class GameManager : MonoBehaviour
                 {
                     GetComponent<AnimationManager>().RunAnimationController(AnimationManager.Anims.CupDrink, animator);
                 }
-
             }
         }
     }
 
     private int Randomizer(int min, int max)
     {
-        int randomInt = Random.Range(min, max + 1);  
+        int randomInt = UnityEngine.Random.Range(min, max + 1);  
         
         return randomInt;
     }

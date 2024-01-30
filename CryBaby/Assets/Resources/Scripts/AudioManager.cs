@@ -36,7 +36,6 @@ public class AudioManager : MonoBehaviour
             if (!s.source.isPlaying)
             {
                 s.source.Play();
-                Debug.Log(name + " is playing");
             }
             s.source.volume = gameManager.musicVolume;
         }
